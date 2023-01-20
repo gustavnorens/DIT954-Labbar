@@ -45,12 +45,12 @@ public class Saab95{
 	    currentSpeed = 0;
     }
 
-    public void setTurboOn(){
-	    turboOn = true;
+    private void setTurboOn(){
+        turboOn = true;
     }
 
-    public void setTurboOff(){
-	    turboOn = false;
+    private void setTurboOff(){
+        turboOn = false;
     }
     
     public double speedFactor(){
@@ -75,5 +75,21 @@ public class Saab95{
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
+    }
+
+    @Override
+    public void move(){
+        posX += currentSpeed;
+        posY += currentSpeed;
+    }
+
+    @Override
+    public void turnLeft(){
+
+    }
+
+    @Override
+    public void turnRight(){
+
     }
 }
