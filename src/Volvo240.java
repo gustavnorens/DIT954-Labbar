@@ -15,6 +15,9 @@ public class Volvo240 extends Car{
         posY = 0;
         dir = Dir.NORTH;
         stopEngine();
+        length = 478;
+        width = 171;
+        height = 143;
     }
 
     /** returns the cars speedfactor */

@@ -7,7 +7,9 @@ public abstract class Car implements Movable {
     protected Dir dir;
 
     /** Number of doors on the car */
+    protected double length, width, height;
     protected int nrDoors;
+
 
     /** Engine power of the car */
     protected double enginePower;
@@ -119,12 +121,12 @@ public abstract class Car implements Movable {
         return enginePower * 0.01;
     }
     /** increases the speed of the car by a given amount */
-    private void incrementSpeed(double amount){
+    protected void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
     }
 
     /** decreases the speed of the car by a given amount */
-    private void decrementSpeed(double amount){
+    protected void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
