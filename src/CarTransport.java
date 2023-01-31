@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Stack;
 
-public class CarTransport<T extends Car> extends Car implements ICarHolder {
+public class CarTransport extends Car implements ICarHolder {
     private boolean rampUp;
     private final int maxCars;
     private final double maxCarWidth, maxCarLength, maxCarHeight;
@@ -85,7 +85,7 @@ public class CarTransport<T extends Car> extends Car implements ICarHolder {
 
     /** Increments the transports speed as well as all the speed of all the cars inside the transport */
     @Override
-    public void incrementSpeed(double amount) {
+    protected void incrementSpeed(double amount) {
         if (rampUp) {
             currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
             for (Car c : cars) {
