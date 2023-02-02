@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /** Subclass of car, represents the 240 */
-public class Volvo240 extends Car{
+public class Volvo240 extends Vehicle {
 
     /** the trimfactor of the car */
     private final static double trimFactor = 1.25;

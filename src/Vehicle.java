@@ -1,13 +1,16 @@
+
 import java.awt.*;
 
 /** Car super-class */
-public abstract class Car implements Movable {
+public abstract class Vehicle implements Movable {
 
     /** Current direction of the of car */
     protected Dir dir;
 
-    /** Number of doors on the car */
+    /** Width, Height, and length of the Car-Object */
     protected double length, width, height;
+    /** Number of doors on the car */
+
     protected int nrDoors;
 
 
@@ -28,6 +31,21 @@ public abstract class Car implements Movable {
 
     /** Y position in the 2d plane */
     protected double posY;
+
+    /** return the height of the car */
+    public double getHeight() {
+        return height;
+    }
+
+    /** returns the length of the car */
+    public double getLength() {
+        return length;
+    }
+
+    /** returns the width of the car */
+    public double getWidth() {
+        return width;
+    }
 
     /** returns the number of doors of the cars */
     public int getNrDoors(){
@@ -110,11 +128,6 @@ public abstract class Car implements Movable {
             case EAST -> Dir.SOUTH;
         };
     }
-    /*
-    Car newCar = new Saab95();
-    newCar
-
-     */
 
    /** returns the cars speedfactor */
     protected double speedFactor() {

@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Car implements ITrailer{
+public class Scania extends Vehicle implements ITrailer{
     private double trailerTilt;
 
     /** constructor for Scania */
@@ -46,4 +46,17 @@ public class Scania extends Car implements ITrailer{
         return trailerTilt;
     }
 
+    @Override
+    public boolean canDrive() {
+        if (trailerTilt > 0) {
+            return false;
+        }
+        return true;
+
+    }
+
+    @Override
+    public void changeTilt() {
+
+    }
 }

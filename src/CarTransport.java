@@ -1,14 +1,15 @@
 import java.awt.*;
-import java.util.Stack;
+import java.util.ArrayList;
 
-public class CarTransport extends Car implements ICarHolder {
+
+public class CarTransport extends Vehicle implements ICarHolder, ITrailer {
     private boolean rampUp;
-    private final int maxCars;
     private final double maxCarWidth, maxCarLength, maxCarHeight;
-    private Stack<Car> cars = new Stack<>();
+    private final int maxCars;
+
+    private CarHolder<Vehicle> parent;
 
 
-    /** Constructor for CarTransport */
     public CarTransport () {
         nrDoors = 2;
         color = Color.blue;
@@ -19,8 +20,10 @@ public class CarTransport extends Car implements ICarHolder {
         dir = Dir.NORTH;
         rampUp = true;
         stopEngine();
-
         maxCars = 3;
+
+        parent = new CarHolder<>(maxCars);
+
         length = 1500;
         width = 270;
         height = 450;
@@ -38,10 +41,9 @@ public class CarTransport extends Car implements ICarHolder {
         }
     }
 
-    /** adds the car to the truck */
-    @Override
-    public boolean addCar(Car car) {
-        if (!rampUp && fitsOnTruck(car) && isNearby(car)) {
+    /** Adds the given car to the transport */
+    public boolean addCar(Vehicle car) {
+        if (!rampUp /*&& fitsOnTruck(car) */ && isNearby(car)) {
             car.posX = posX;
             car.posY = posY;
             car.currentSpeed = currentSpeed;
@@ -64,17 +66,17 @@ public class CarTransport extends Car implements ICarHolder {
     /** Checks if the car fits on the transport */
     private  boolean fitsOnTruck(Car car) {
         if (car.length <= maxCarLength && car.width <= maxCarWidth &&
-                car.height <= maxCarHeight && cars.size() < 3) {
+                car.height <= maxCarHeight && parent.cars.size() < 3) {
             return true;
         }
         return false;
     }
 
     /** removes the last stowed car from the transport */
-    @Override
-    public Car removeCar() {
-        if (!rampUp && !cars.isEmpty()){
-            Car car = cars.pop();
+    public Vehicle removeCar() {
+        if (!rampUp && !parent.cars.isEmpty()){
+            Vehicle car = parent.removeCar(parent.numberOfCurrentCars);
+            car.dir = dir;
             car.currentSpeed = -5;
             car.move();
             car.currentSpeed = 0;
@@ -83,27 +85,27 @@ public class CarTransport extends Car implements ICarHolder {
         return null;
     }
 
-    /** Increments the transports speed as well as all the speed of all the cars inside the transport */
+    /** Moves the CarTransport and all the cars currently on it's trailer */
     @Override
-    protected void incrementSpeed(double amount) {
-        if (rampUp) {
-            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
-            for (Car c : cars) {
-                c.currentSpeed = currentSpeed;
+    public void move(){
+        for (Vehicle c : parent.cars) {
+            if (c != null) {
+                c.currentSpeed = this.currentSpeed;
+                c.dir = dir;
+                c.move();
             }
         }
+        super.move();
     }
 
-    /** Decrements the transports speed as well as all the speed of all the cars inside the transport */
     @Override
-    public void decrementSpeed(double amount) {
-        if (rampUp) {
-            currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
-            for (Car c : cars) {
-                c.currentSpeed = currentSpeed;
-            }
-        }
+    public boolean canDrive() {
+        return !getRamp();
     }
 
+    @Override
+    public void changeTilt() {
+
+    }
 }
 
