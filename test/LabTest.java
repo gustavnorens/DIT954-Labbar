@@ -129,4 +129,71 @@ public class LabTest {
         volvo.stopEngine();
         assert (volvo.getCurrentSpeed() == 0);
     }
+    /** test to make sure the increaseTrailer function works properly */
+    @Test
+    public void increaseTrailerTiltTest() {
+        Scania scania = new Scania();
+        scania.increaseTrailerTilt(72);
+        assert (scania.getTrailerTilt() == 70);
+    }
+
+    /** test to make sure the removeCar method works properly on CarTransport objects */
+    @Test
+    public void removeCarTestCarTransport(){
+        transport.addCar(scania);
+        assert (transport.removeCar().equals(scania));
+    }
+
+    /**Test to make sure the removeCar method works properly on CarWorkshop objects */
+    @Test
+    public void removeCarTestCarWorkshop(){
+        normalWorkshop.addCar(scania);
+        assert (normalWorkshop.removeCar(0) == null);
+    }
+
+    /** test to make sure the rampToggle() function works properly */
+    @Test
+    public void rampToggleTest(){
+        transport.rampToggle();
+        assert (!transport.getRamp());
+    }
+
+    /** test to make sure the addCar() function (in the transport class) works properly */
+    @Test
+    public void addCarTestCarTransport(){
+        transport.rampToggle();
+        System.out.println(transport.addCar(volvo));
+        assert (transport.getCars().get(0) != null);
+    }
+
+    /** test to make sure the addCar() function (in the workshop class) works properly */
+    @Test
+    public void addCarTestCarWorkshop(){
+        normalWorkshop.addCar(volvo);
+        assert(!normalWorkshop.getCars().isEmpty());
+    }
+    /** test to make sure the move car function works properly when the CarTransport is loaded*/
+    @Test
+    public void moveCarTransportTest() {
+        double xVolvo = volvo.getPosX();
+        double yVolvo = volvo.getPosX();
+        transport.rampToggle();
+        transport.addCar(volvo);
+        transport.rampToggle();
+        transport.currentSpeed = 200;
+        transport.move();
+        transport.turnRight();
+        transport.move();
+        transport.currentSpeed = 0;
+        transport.rampToggle();
+        System.out.println(transport.getCars().get(0));
+        Vehicle v = transport.removeCar();
+        assert (xVolvo == v.getPosX() + 195 || yVolvo == v.getPosY() - 195);
+    }
+    /** test to make sure that bigger cars don't fit on the CarTransport */
+    @Test
+    public void carFitsTest() {
+        transport.addCar(scania);
+        assert(transport.getCars().isEmpty());
+    }
 }

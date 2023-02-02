@@ -16,4 +16,9 @@ public class CarWorkshop<T extends Vehicle> {
     public T removeCar(int slot) {
         return parent.cars.set(slot, null);
     }
+
+    /** Returns the list of all cars currently in the workshop*/
+    public ArrayList<T> getCars(){
+        return parent.getCars();
+    }
 }
