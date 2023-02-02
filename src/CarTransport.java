@@ -39,7 +39,7 @@ public class CarTransport extends Vehicle implements ICarHolder, ITrailer {
 
     }
 
-    /** Toggles the ramp */
+    /** Toggles the ramp */ /** Toggles the ramp */
     public void rampToggle() {
         if (currentSpeed == 0) {
             rampUp = !rampUp;
@@ -60,7 +60,7 @@ public class CarTransport extends Vehicle implements ICarHolder, ITrailer {
     }
 
     /** Checks if the car is nearby to the transport */
-    private boolean isNearby(Car car) {
+    private boolean isNearby(Vehicle car) {
         if (car.posX <= posX + 10 && car.posX >= posX - 10 &&
                 car.posY <= posY + 10 && car.posY >= posY - 10) {
            return true;

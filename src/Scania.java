@@ -3,7 +3,7 @@ import java.awt.*;
 public class Scania extends Vehicle implements ITrailer{
     private double trailerTilt;
 
-    /** constructor for Scania */
+    /** constructor for Scania */   /** Constructor */
     public Scania(){
         nrDoors = 2;
         color = Color.white;
@@ -19,7 +19,7 @@ public class Scania extends Vehicle implements ITrailer{
         height = 300;
     }
 
-    /** Increases the trailer tilt by a chosen amount of degrees */
+    /** Increases the trailer tilt by a chosen amount of degrees */     /** Increases the trailer tilt a given amount of degrees */
     public void increaseTrailerTilt(double deg){
        if (currentSpeed == 0 && deg >= 0) {
            if (deg + trailerTilt > 70) {
@@ -30,7 +30,7 @@ public class Scania extends Vehicle implements ITrailer{
        }
     }
 
-    /** decreaseTrailerTilt will increase the tilt by the chosen amount in degrees with a double */     /** decreases the trailer tilt a chosen amount of degrees */
+     /** decreases the trailer tilt a chosen amount of degrees */
     public void decreaseTrailerTilt(double deg){
         if (currentSpeed == 0 && deg >= 0) {
             if (trailerTilt - deg < 0) {
@@ -41,7 +41,7 @@ public class Scania extends Vehicle implements ITrailer{
         }
     }
 
-    /** Returns the current trailer tilt */
+    /** Returns the current trailer tilt */     /** returns the current trailer tilt */
     public double getTrailerTilt(){
         return trailerTilt;
     }
