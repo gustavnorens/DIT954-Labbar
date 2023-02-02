@@ -16,6 +16,9 @@ public class Saab95 extends Vehicle {
         posY = 0;
         dir = Dir.NORTH;
         stopEngine();
+        height = 147;
+        width = 185;
+        length = 501;
     }
 
     /** turns on the cars turbo */

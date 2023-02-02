@@ -26,7 +26,11 @@ public class LabTest {
     /** code that runs after every test */
     @After
     public void afterTest() {
-        obj = null;
+        volvo = null;
+        scania = null;
+        transport = null;
+        normalWorkshop = null;
+        volvoWorkshop = null;
     }
 
     /** test the turnLeft() function */

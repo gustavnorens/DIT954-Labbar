@@ -31,6 +31,11 @@ public class CarTransport extends Vehicle implements ICarHolder, ITrailer {
         maxCarHeight = 200;
         maxCarWidth = 250;
         maxCarLength = 600;
+    }
+
+    /** Gets the current state of the ramp. True if ramp is up and False otherwise */
+    public boolean getRamp(){
+        return rampUp;
 
     }
 
@@ -46,9 +51,9 @@ public class CarTransport extends Vehicle implements ICarHolder, ITrailer {
         if (!rampUp /*&& fitsOnTruck(car) */ && isNearby(car)) {
             car.posX = posX;
             car.posY = posY;
-            car.currentSpeed = currentSpeed;
+            car.currentSpeed = 0;
             car.dir = dir;
-            cars.push(car);
+            parent.addCar(car);
             return true;
         }
         return false;
@@ -64,12 +69,17 @@ public class CarTransport extends Vehicle implements ICarHolder, ITrailer {
     }
 
     /** Checks if the car fits on the transport */
-    private  boolean fitsOnTruck(Car car) {
+    private boolean fitsOnTruck(Vehicle car) {
         if (car.length <= maxCarLength && car.width <= maxCarWidth &&
                 car.height <= maxCarHeight && parent.cars.size() < 3) {
             return true;
         }
         return false;
+    }
+
+    /** getCars returns the Stack<Car> called cars */
+    public ArrayList<Vehicle> getCars() {
+        return parent.cars;
     }
 
     /** removes the last stowed car from the transport */
