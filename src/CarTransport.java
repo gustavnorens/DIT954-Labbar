@@ -2,13 +2,16 @@ import java.awt.*;
 import java.util.ArrayList;
 
 
-public class CarTransport extends Vehicle implements ICarHolder, ITrailer {
+public class CarTransport extends Truck implements ICarHolder {
     private boolean rampUp;
     private final double maxCarWidth, maxCarLength, maxCarHeight;
     private final int maxCars;
 
     private CarHolder<Vehicle> parent;
 
+    public boolean isRampUp(){
+        return rampUp;
+    }
 
     public CarTransport () {
         nrDoors = 2;
@@ -31,12 +34,6 @@ public class CarTransport extends Vehicle implements ICarHolder, ITrailer {
         maxCarHeight = 200;
         maxCarWidth = 250;
         maxCarLength = 600;
-    }
-
-    /** Gets the current state of the ramp. True if ramp is up and False otherwise */
-    public boolean getRamp(){
-        return rampUp;
-
     }
 
     /** Toggles the ramp */ /** Toggles the ramp */
@@ -106,16 +103,6 @@ public class CarTransport extends Vehicle implements ICarHolder, ITrailer {
             }
         }
         super.move();
-    }
-
-    @Override
-    public boolean canDrive() {
-        return !getRamp();
-    }
-
-    @Override
-    public void changeTilt() {
-
     }
 }
 

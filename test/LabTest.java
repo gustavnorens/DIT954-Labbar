@@ -155,7 +155,7 @@ public class LabTest {
     @Test
     public void rampToggleTest(){
         transport.rampToggle();
-        assert (!transport.getRamp());
+        assert (!transport.isRampUp());
     }
 
     /** test to make sure the addCar() function (in the transport class) works properly */

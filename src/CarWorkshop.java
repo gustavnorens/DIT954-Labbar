@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /** Class to represent a Car Workshop */
-public class CarWorkshop<T extends Vehicle> {
+public class CarWorkshop<T extends Vehicle> implements ICarHolder{
     /** ArrayList that represents all slots in the workshop */
 
     private CarHolder<T> parent;

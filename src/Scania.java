@@ -54,9 +54,4 @@ public class Scania extends Vehicle implements ITrailer{
         return true;
 
     }
-
-    @Override
-    public void changeTilt() {
-
-    }
 }
