@@ -36,11 +36,13 @@ public class CarTransport extends Truck implements ICarHolder {
         maxCarLength = 600;
     }
 
-    /** Toggles the ramp */ /** Toggles the ramp */
+    /** Toggles the ramp */ /**
+     * Toggles the ramp
+     *
+     * @return
+     */
     public void rampToggle() {
-        if (currentSpeed == 0) {
-            rampUp = !rampUp;
-        }
+        rampUp = !rampUp;
     }
 
     /** Adds the given car to the transport */
