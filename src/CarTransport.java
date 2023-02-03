@@ -47,7 +47,7 @@ public class CarTransport extends Truck implements ICarHolder {
 
     /** Adds the given car to the transport */
     public boolean addCar(Vehicle car) {
-        if (!rampUp /*&& fitsOnTruck(car) */ && isNearby(car)) {
+        if (!rampUp && fitsOnTruck(car) && isNearby(car)) {
             car.posX = posX;
             car.posY = posY;
             car.currentSpeed = 0;
@@ -70,7 +70,7 @@ public class CarTransport extends Truck implements ICarHolder {
     /** Checks if the car fits on the transport */
     private boolean fitsOnTruck(Vehicle car) {
         if (car.length <= maxCarLength && car.width <= maxCarWidth &&
-                car.height <= maxCarHeight && parent.cars.size() < 3) {
+                car.height <= maxCarHeight && parent.numberOfCurrentCars < 3) {
             return true;
         }
         return false;
@@ -94,7 +94,6 @@ public class CarTransport extends Truck implements ICarHolder {
         return null;
     }
 
-    /** Moves the CarTransport and all the cars currently on it's trailer */
     @Override
     public void move(){
         for (Vehicle c : parent.cars) {
